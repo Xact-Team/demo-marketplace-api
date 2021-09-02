@@ -25,7 +25,7 @@ class NftResource extends JsonResource
             'price' => $this->price,
             'currency' => $this->currency,
             'supply' => $this->supply,
-            'fil_address' => $this->file_address,
+            'fil_address' => $this->fil_address,
             'network' => $this->network,
             'asset' => Storage::disk('asset')->url($this->asset),
             'asset_type' => $this->asset_type
