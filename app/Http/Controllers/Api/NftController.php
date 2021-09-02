@@ -15,8 +15,13 @@ class NftController extends Controller
     public function index(Request $request): AnonymousResourceCollection
     {
         $nfts = Nft::query()
-            ->where('network', $request->get('network', 'testnet'))
+            ->where(function ($query) use ($request) {
+                if ($request->has('network')) {
+                    $query->where('network', $request->get('network', 'testnet'));
+                }
+            })
             ->where('supply', '>=', 1)
+            ->latest()
             ->get();
 
         return NftResource::collection($nfts);
